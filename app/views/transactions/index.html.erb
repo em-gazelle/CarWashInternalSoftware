@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Transactions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>License plate number</th>
+      <th>Vehicle type</th>
+      <th>Truck bed down</th>
+      <th>Truck bed muddy</th>
+      <th>First time</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.license_plate_number %></td>
+        <td><%= transaction.vehicle_type %></td>
+        <td><%= transaction.truck_bed_down %></td>
+        <td><%= transaction.truck_bed_muddy %></td>
+        <td><%= transaction.first_time %></td>
+        <td><%= transaction.price %></td>
+        <td><%= link_to 'Show', transaction %></td>
+        <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
+        <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Transaction', new_transaction_path %>

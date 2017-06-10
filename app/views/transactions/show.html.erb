@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>License plate number:</strong>
+  <%= @transaction.license_plate_number %>
+</p>
+
+<p>
+  <strong>Vehicle type:</strong>
+  <%= @transaction.vehicle_type %>
+</p>
+
+<p>
+  <strong>Truck bed down:</strong>
+  <%= @transaction.truck_bed_down %>
+</p>
+
+<p>
+  <strong>Truck bed muddy:</strong>
+  <%= @transaction.truck_bed_muddy %>
+</p>
+
+<p>
+  <strong>First time:</strong>
+  <%= @transaction.first_time %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @transaction.price %>
+</p>
+
+<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
+<%= link_to 'Back', transactions_path %>
