@@ -1,35 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Transactions</h1>
+<div class="jumbotron">
+  <h1>Transaction History</h1>
+  <%= link_to 'New Car Wash Transaction', new_transaction_path, class: "btn btn-primary padding-top" %>
+</div>
 
-<table>
+
+
+<table class="table">
   <thead>
     <tr>
-      <th>License plate number</th>
-      <th>Vehicle type</th>
-      <th>Truck bed muddy?</th>
-      <th>Returning customer?</th>
-      <th>Price</th>
-      <th colspan="3"></th>
+      <th class="col-xs-3">Date Washed</th>      
+      <th class="col-xs-2">License Plate Number</th>
+      <th class="col-xs-2">Vehicle Type</th>
+      <th class="col-xs-1">Truck Bed Muddy?</th>
+      <th class="col-xs-1">Returning Customer Discount?</th>
+      <th class="col-xs-2">Price</th>
     </tr>
   </thead>
 
   <tbody>
     <% @transactions.each do |transaction| %>
       <tr>
+        <td><%= transaction.created_at.strftime("%b %e, %Y") %></td>
         <td><%= transaction.license_plate_number %></td>
         <td><%= transaction.vehicle_type %></td>
-        <td><%= transaction.truck_bed_muddy %></td>
-        <td><%= transaction.returning_customer_discount %></td>
-        <td><%= transaction.price %></td>
-        <td><%= link_to 'Show', transaction %></td>
-        <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
-        <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= check_box "", "", {checked: transaction.truck_bed_muddy, disabled: true} %>
+        <td><%= check_box "", "", {checked: transaction.returning_customer_discount, disabled: true} %>
+        <td>$<%= transaction.price %></td>
+        <td><%= link_to '', transaction, class: "glyphicon glyphicon-search" %></td>
+        <td><%= link_to '', edit_transaction_path(transaction), class: "glyphicon glyphicon-pencil" %></td>
+        <td><%= link_to '', transaction, method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Transaction', new_transaction_path %>

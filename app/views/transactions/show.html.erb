@@ -1,32 +1,38 @@
 <p id="notice"><%= notice %></p>
 
+<div class="jumbotron">
+  <h1>Receipt for your Car Wash:</h1>
+</div>
+
 <p>
-  <strong>License plate number:</strong>
+  <strong>Date:</strong>
+  <%= @transaction.created_at.strftime("%b %e, %Y") %>
+</p>
+
+<p>
+  <strong>License Plate Number:</strong>
   <%= @transaction.license_plate_number %>
 </p>
 
 <p>
-  <strong>Vehicle type:</strong>
-  <%= @transaction.vehicle_type %>
+  <strong>+</strong>
+  $<%= if @transaction.vehicle_type == "Car" then 5 else 10 end %> base charge for <%= @transaction.vehicle_type.downcase %>s.
 </p>
 
-<% if @transaction.vehicle_type == "Truck" %>
+<% if @transaction.truck_bed_muddy %>
   <p>
-    <strong>Truck bed muddy?:</strong>
-    <%= @transaction.truck_bed_muddy %>
+    <strong>+</strong>
+    <td>$2 for mud in truck bed.</td>
+  </p>
+<% end %>
+
+<% if @transaction.returning_customer_discount %>
+  <p>
+    <strong>-</strong>
+    <td>50% for returning customer discount</td>
   </p>
 <% end %>
 
 <p>
-  <strong>Returning Customer?:</strong>
-  <%= @transaction.returning_customer_discount %>
+  <strong>= $<%= @transaction.price %> </strong>
 </p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @transaction.price %>
-</p>
-
-<%= link_to 'New Transaction', new_transaction_path %> | 
-<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
-<%= link_to 'All Transactions', transactions_path %>

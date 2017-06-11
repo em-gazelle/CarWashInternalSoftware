@@ -8,6 +8,15 @@
 </head>
 <body>
 
+<ul class="nav nav-pills">
+  <li role="presentation" class=""><%= link_to "Transaction History", transactions_path %></li>
+  <li role="presentation" class=""><%= link_to "New Transaction", new_transaction_path %></li>
+  <% if @transaction && @transaction.id %>
+	  <li role="presentation" class=""><%= link_to "Edit", edit_transaction_path(@transaction) %></li>
+	  <li role="presentation" class=""><%= link_to "Show", @transaction %></li>
+  <% end %>
+</ul>
+
 <%= yield %>
 
 </body>
