@@ -1,23 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe TransactionsController, type: :controller do
-
   let(:license_plate_number) { Faker::Number.number(7) }
   let(:muddy_truck) { Fabricate(:transaction, vehicle_type: "Truck", license_plate_number: license_plate_number, truck_bed_down: false, truck_bed_muddy: true) }
-
-  let (:invalid_car_missing_attributes) {Fabricate.to_params(:transaction, vehicle_type: "Car")}
-  let (:invalid_truck_missing_attributes) {Fabricate.to_params(:transaction, vehicle_type: "Truck", license_plate_number: license_plate_number, truck_bed_down: false)}
-  let (:invalid_truck_bed_attributes) {Fabricate.to_params(:transaction, vehicle_type: "Truck", license_plate_number: license_plate_number, truck_bed_down: true, truck_bed_muddy: true)}
-  let (:invalid_stolen_attributes) {Fabricate.to_params(:transaction, vehicle_type: "Truck", license_plate_number: "1111111", truck_bed_down: false, truck_bed_muddy: true)}
-  let (:valid_car_attributes) {Fabricate.to_params(:transaction, vehicle_type: "Car", license_plate_number: license_plate_number)}
-  let (:valid_truck_attributes) {Fabricate.to_params(:transaction, vehicle_type: "Truck", license_plate_number: license_plate_number, truck_bed_down: false, truck_bed_muddy: true)}
-
-  # let(:loyal_car_attributes) {Fabricate.to_params(:transaction, vehicle_type: "Car", license_plate_number: license_plate_number)}
-  # let(:loyal_truck_attributes) {Fabricate.to_params(:transaction, vehicle_type: "Car", license_plate_number: license_plate_number)}
-  # let(:loyal_muddy_truck_attributes) {Fabricate.to_params(:transaction, vehicle_type: "Car", license_plate_number: license_plate_number)}
-  # let(:muddy_truck_attributes) {Fabricate.to_params(:transaction, vehicle_type: "Car", license_plate_number: license_plate_number)}
-
-  # let(:loyal_muddy_truck) { Fabricate(:transaction, loyal_muddy_truck_attributes) }
+  let(:valid_truck_attributes) {Fabricate.to_params(:transaction, vehicle_type: "Truck", license_plate_number: license_plate_number, truck_bed_down: false, truck_bed_muddy: false)}
+  let(:new_invalid_attributes) { Fabricate.to_params(:transaction, vehicle_type: "Truck", license_plate_number: license_plate_number, truck_bed_down: true) }
 
   describe "GET #index" do
     it "assigns all transactions as @transactions" do
@@ -29,7 +16,7 @@ RSpec.describe TransactionsController, type: :controller do
 
   describe "GET #show" do
     it "assigns the requested transaction as @transaction" do
-      get :show, id: muddy_truck.id #, session: valid_session
+      get :show, id: muddy_truck.id
       expect(assigns(:transaction)).to eq(muddy_truck)
       expect(response.status).to eq(200)
     end
@@ -67,7 +54,7 @@ RSpec.describe TransactionsController, type: :controller do
 
     context "with invalid params" do
       it "re-renders the 'new' template and assigns a newly created but unsaved transaction as @transaction" do
-        post :create, transaction: invalid_stolen_attributes
+        post :create, transaction: new_invalid_attributes
         expect(assigns(:transaction)).to be_a_new(Transaction)
         expect(response).to render_template("new")
         expect(response.status).to eq(200)
@@ -76,12 +63,9 @@ RSpec.describe TransactionsController, type: :controller do
   end
 
   describe "PUT #update" do
-    let(:new_attributes) { Fabricate.to_params(:transaction, vehicle_type: "Truck", license_plate_number: license_plate_number, truck_bed_down: false, truck_bed_muddy: false) }
-    let(:new_invalid_attributes) { Fabricate.to_params(:transaction, vehicle_type: "Truck", license_plate_number: license_plate_number, truck_bed_down: true) }
-
     context "with valid params" do
       it "updates the requested transaction" do
-        put :update, id: muddy_truck.id, transaction: new_attributes
+        put :update, id: muddy_truck.id, transaction: valid_truck_attributes
         expect(response).to redirect_to(muddy_truck)
         expect(response.status).to eq(302)
         expect(assigns(:transaction).truck_bed_muddy).to be false
