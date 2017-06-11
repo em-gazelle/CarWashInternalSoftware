@@ -1,28 +1,19 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Ruby on Rails App intended to be used as a SaaS product for car washes. When a new vehicle comes to your car wash, simply enter in the vehicle's license plate number, the vehicle type, and any additional charges. The application will then generate the price, whether your new vehicle is a loyal customer, and a receipt. 
 
-Things you may want to cover:
+Rails 4.2, Ruby 2.3
 
-* Ruby version
+To get up and running: <tt>bundle install</tt>; <tt>rake db:create db:migrate db:seed</tt>
 
-* System dependencies
+To run tests: <tt>rspec</tt>
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To start application: <tt>rails s</tt>
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+====Rules of my Car Wash:
+* Cars and Trucks only. No RVs, Trailers, etc.
+* Stolen vehicles will not be serviced.
+* Trucks with their beds let down will not be serviced.
+* Trucks with mud in their bed will be charged a small fee.
+* Loyal, returning customers will receive a whopping 50% discount!
