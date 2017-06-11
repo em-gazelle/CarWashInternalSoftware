@@ -69,6 +69,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:license_plate_number, :vehicle_type, :truck_bed_down, :truck_bed_muddy, :first_time, :price)
+      params.require(:transaction).permit(:license_plate_number, :vehicle_type, :truck_bed_down, :truck_bed_muddy)
     end
 end
