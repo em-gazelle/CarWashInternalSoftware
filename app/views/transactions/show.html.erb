@@ -12,19 +12,14 @@
 
 <% if @transaction.vehicle_type == "Truck" %>
   <p>
-    <strong>Truck bed down:</strong>
-    <%= @transaction.truck_bed_down %>
-  </p>
-
-  <p>
-    <strong>Truck bed muddy:</strong>
+    <strong>Truck bed muddy?:</strong>
     <%= @transaction.truck_bed_muddy %>
   </p>
 <% end %>
 
 <p>
-  <strong>First time:</strong>
-  <%= @transaction.first_time %>
+  <strong>Returning Customer?:</strong>
+  <%= @transaction.returning_customer_discount %>
 </p>
 
 <p>
@@ -32,5 +27,6 @@
   <%= @transaction.price %>
 </p>
 
+<%= link_to 'New Transaction', new_transaction_path %> | 
 <%= link_to 'Edit', edit_transaction_path(@transaction) %> |
-<%= link_to 'Back', transactions_path %>
+<%= link_to 'All Transactions', transactions_path %>

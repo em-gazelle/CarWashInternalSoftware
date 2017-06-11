@@ -7,9 +7,8 @@
     <tr>
       <th>License plate number</th>
       <th>Vehicle type</th>
-      <th>Truck bed down</th>
-      <th>Truck bed muddy</th>
-      <th>First time</th>
+      <th>Truck bed muddy?</th>
+      <th>Returning customer?</th>
       <th>Price</th>
       <th colspan="3"></th>
     </tr>
@@ -20,9 +19,8 @@
       <tr>
         <td><%= transaction.license_plate_number %></td>
         <td><%= transaction.vehicle_type %></td>
-        <td><%= transaction.truck_bed_down %></td>
         <td><%= transaction.truck_bed_muddy %></td>
-        <td><%= transaction.first_time %></td>
+        <td><%= transaction.returning_customer_discount %></td>
         <td><%= transaction.price %></td>
         <td><%= link_to 'Show', transaction %></td>
         <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>

@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170610221204) do
+ActiveRecord::Schema.define(version: 20170611050435) do
 
   create_table "transactions", force: :cascade do |t|
     t.string   "license_plate_number"
     t.string   "vehicle_type"
     t.boolean  "truck_bed_down"
     t.boolean  "truck_bed_muddy"
-    t.boolean  "first_time"
+    t.boolean  "returning_customer_discount"
     t.decimal  "price"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end
