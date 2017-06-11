@@ -10,15 +10,17 @@
   <%= @transaction.vehicle_type %>
 </p>
 
-<p>
-  <strong>Truck bed down:</strong>
-  <%= @transaction.truck_bed_down %>
-</p>
+<% if @transaction.vehicle_type == "Truck" %>
+  <p>
+    <strong>Truck bed down:</strong>
+    <%= @transaction.truck_bed_down %>
+  </p>
 
-<p>
-  <strong>Truck bed muddy:</strong>
-  <%= @transaction.truck_bed_muddy %>
-</p>
+  <p>
+    <strong>Truck bed muddy:</strong>
+    <%= @transaction.truck_bed_muddy %>
+  </p>
+<% end %>
 
 <p>
   <strong>First time:</strong>

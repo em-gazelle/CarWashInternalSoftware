@@ -1,3 +1,5 @@
+<%= javascript_include_tag "transaction_form" %>
+
 <%= form_for(@transaction) do |f| %>
   <% if @transaction.errors.any? %>
     <div id="error_explanation">
@@ -17,24 +19,21 @@
   </div>
   <div class="field">
     <%= f.label :vehicle_type %><br>
-    <%= f.text_field :vehicle_type %>
+    <%= f.select :vehicle_type, ["Car", "Truck", "Other"], {}, {onChange: "vehicleTypeForm()"} %>
   </div>
-  <div class="field">
-    <%= f.label :truck_bed_down %><br>
-    <%= f.check_box :truck_bed_down %>
+
+  <div id="onlyTrucks" class="<%= "hidden" if @transaction.vehicle_type != "Truck" %>">
+    <div class="field">
+      <%= f.label :truck_bed_down %><br>
+      <%= f.check_box :truck_bed_down %>
+    </div>
+    <div class="field">
+      <%= f.label :truck_bed_muddy %><br>
+      <%= f.check_box :truck_bed_muddy %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :truck_bed_muddy %><br>
-    <%= f.check_box :truck_bed_muddy %>
-  </div>
-  <div class="field">
-    <%= f.label :first_time %><br>
-    <%= f.check_box :first_time %>
-  </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.text_field :price %>
-  </div>
+  
+
   <div class="actions">
     <%= f.submit %>
   </div>
